@@ -12,21 +12,21 @@ class DatabaseMigrationRepository implements MigrationRepositoryInterface {
      *
      * @var \Illuminate\Database\ConnectionResolverInterface
      */
-    protected $resolver;
+    public $resolver;
 
     /**
      * The migration model.
      *
      * @var \Vinelab\NeoEloquent\Eloquent\Model
      */
-    protected $model;
+    public $model;
 
     /**
      * The name of the database connection to use.
      *
      * @var string
      */
-    protected $connection;
+    public $connection;
 
 
     /**
@@ -113,7 +113,7 @@ class DatabaseMigrationRepository implements MigrationRepositoryInterface {
      *
      * @return \Vinelab\NeoEloquent\Query\Builder
      */
-    protected function label()
+    public function label()
     {
         return $this->getConnection()->table(array($this->getLabel()));
     }
@@ -230,5 +230,8 @@ class DatabaseMigrationRepository implements MigrationRepositoryInterface {
             ->orderBy('migration', 'asc')
             ->get()
             ->pluck('batch', 'migration')->all();
+    }
+    public function deleteRepository(){
+
     }
 }

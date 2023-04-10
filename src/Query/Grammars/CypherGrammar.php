@@ -5,7 +5,7 @@ use Vinelab\NeoEloquent\Exceptions\InvalidCypherGrammarComponentException;
 
 class CypherGrammar extends Grammar {
 
-    protected $selectComponents = array(
+    public $selectComponents = array(
         'matches',
         'from',
         'with',
@@ -37,7 +37,7 @@ class CypherGrammar extends Grammar {
      * @param  array|string $specified You may specify a component to compile
      * @return array
      */
-    protected function compileComponents(Builder $query, $specified = null)
+    public function compileComponents(Builder $query, $specified = null)
     {
         $cypher = array();
 
@@ -83,7 +83,7 @@ class CypherGrammar extends Grammar {
      * @param  string $component
      * @return string
      */
-    protected function compileComponent(Builder $query, $components, $component)
+    public function compileComponent(Builder $query, $components, $component)
     {
         $cypher = '';
 
@@ -260,7 +260,7 @@ class CypherGrammar extends Grammar {
         return sprintf("MATCH (%s)", $labels);
     }
 
-    
+
     /**
      * Compile a "where not in" clause.
      *
@@ -268,7 +268,7 @@ class CypherGrammar extends Grammar {
      * @param  array  $where
      * @return string
      */
-    protected function whereNotIn(Builder $query, $where)
+    public function whereNotIn(Builder $query, $where)
     {
         if (empty($where['values'])) {
             return '1 = 1';
@@ -285,7 +285,7 @@ class CypherGrammar extends Grammar {
      * @param  \Vinelab\NeoEloquent\Query\Builder  $query
      * @return string
      */
-    protected function compileWheres(Builder $query)
+    public function compileWheres(Builder $query)
     {
         $cypher = array();
 
@@ -321,7 +321,7 @@ class CypherGrammar extends Grammar {
      * @param  array  $where
      * @return string
      */
-    protected function whereBasic(Builder $query, $where)
+    public function whereBasic(Builder $query, $where)
     {
         $value = $this->parameter($where);
 
@@ -335,7 +335,7 @@ class CypherGrammar extends Grammar {
      * @param  array  $where
      * @return string
      */
-    protected function whereCarried(Builder $query, $where)
+    public function whereCarried(Builder $query, $where)
     {
         return $where['column'] .' '. $where['operator']. ' '.$where['value'];
     }
@@ -347,7 +347,7 @@ class CypherGrammar extends Grammar {
      * @param  int  $limit
      * @return string
      */
-    protected function compileLimit(Builder $query, $limit)
+    public function compileLimit(Builder $query, $limit)
     {
         return 'LIMIT '.(int) $limit;
     }
@@ -359,7 +359,7 @@ class CypherGrammar extends Grammar {
      * @param  int  $offset
      * @return string
      */
-    protected function compileOffset(Builder $query, $offset)
+    public function compileOffset(Builder $query, $offset)
     {
         return 'SKIP '.(int) $offset;
     }
@@ -371,7 +371,7 @@ class CypherGrammar extends Grammar {
      * @param  array  $columns
      * @return string
      */
-    protected function compileColumns(Builder $query, $properties)
+    public function compileColumns(Builder $query, $properties)
     {
         // When we have an aggregate we will have to return it instead of the plain columns
         // since aggregates for Cypher are not calculated at the beginning of the query like SQL
@@ -454,7 +454,7 @@ class CypherGrammar extends Grammar {
      * @param  array  $where
      * @return string
      */
-    protected function whereIn(Builder $query, $where)
+    public function whereIn(Builder $query, $where)
     {
         $values = $this->valufy($where['values']);
 
@@ -476,7 +476,7 @@ class CypherGrammar extends Grammar {
 
         $where = is_array($query->wheres) ? $this->compileWheres($query) : '';
 
-       
+
         return "$match $where OPTIONAL $match-[r]-()  $where DELETE  " . $query->modelAsNode().",r";
 
     }

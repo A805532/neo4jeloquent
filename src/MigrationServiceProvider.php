@@ -183,7 +183,8 @@ class MigrationServiceProvider extends ServiceProvider {
     protected function registerMigrateMakeCommand()
     {
         $this->app->singleton('migration.neoeloquent.creator', function($app) {
-            return new MigrationCreator($app['files']);
+            $stub = __DIR__ . '/stubs';
+            return new MigrationCreator($app['files'],$stub);
         });
 
         $this->app->singleton('command.neoeloquent.migrate.make', function($app) {
