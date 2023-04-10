@@ -19,7 +19,7 @@
        "php": "^8.0.2",
         "doctrine/dbal": "*",
         "dragonmantank/cron-expression": "*",
-        "fzaninotto/faker": "*",
+        "fzaninotto/faker": "^1.13.0",
         "guzzlehttp/guzzle": "*",
         "heydavid713/neo4jphp": "*",
         "illuminate/console": "^9.0|^10.0",
