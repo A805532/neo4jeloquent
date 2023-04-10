@@ -1,0 +1,65 @@
+{
+    "name": "prakashhalder/neoeloquent",
+    "description": "Laravel wrapper for the Neo4j graph database REST interface",
+    "keywords": [
+        "laravel",
+        "neo4j",
+        "graph",
+        "database",
+        "neoeloquent"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Prakash Halder",
+            "email": "prakash.halder@edifixio.com"
+        }
+    ],
+    "require": {
+       "php": "^8.0.2",
+        "doctrine/dbal": "*",
+        "dragonmantank/cron-expression": "*",
+        "fzaninotto/faker": "*",
+        "guzzlehttp/guzzle": "*",
+        "heydavid713/neo4jphp": "*",
+        "illuminate/console": "^9.0|^10.0",
+        "illuminate/database": "^9.0|^10.0",
+        "illuminate/events": "^9.0|^10.0",
+        "illuminate/filesystem": "^9.0|^10.0",
+        "illuminate/pagination": "^9.0|^10.0",
+        "illuminate/support": "^9.0|^10.0",
+        "moontoast/math": "*",
+        "nesbot/carbon": "*",
+        "ramsey/uuid": "*",
+        "symfony/config": "*",
+        "symfony/event-dispatcher": "*",
+        "symfony/lock": "*",
+        "symfony/process": "*",
+        "symfony/var-dumper": "*",
+        "symfony/yaml": "*"
+    },
+    "require-dev": {
+        "mockery/mockery": "*",
+        "phpunit/phpunit": "*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Vinelab\\NeoEloquent\\NeoEloquentServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Vinelab\\NeoEloquent\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/TestCase.php"
+        ]
+    },
+    "repositories": [],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
